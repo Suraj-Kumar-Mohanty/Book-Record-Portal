@@ -1,0 +1,37 @@
+#heading {
+  text-align:center;
+}
+
+#creds {
+text-align: center;
+margin-top: 10%;
+}
+
+#getBooksBtn {
+text-align: center;
+margin-left: 47%;
+margin-top: 2%;
+}
+
+#postCreds {
+text-align: center;
+margin-left: 49%;
+}
+
+#fields {
+margin-right: 2%;
+float:right;
+}
+
+p {
+margin-right: 2%;
+}
+
+.hidden{
+display:none;
+}
+
+#result {
+padding-left: 30%;
+padding-top: 20px;
+}

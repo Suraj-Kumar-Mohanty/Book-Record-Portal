@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Book Tracking App</title>
+    <link rel="stylesheet" type="text/css" href = "design.css">
+  </head>
+  <body>
+    <div id="heading">
+    <h1>Books Record Portal</h1>
+    </div>
+    <div id="fields">
+    <label for="startDate">Start Date:</label>
+    <input type="date" id="startDate" name="startDate">
+    <label for="endDate">End Date:</label>
+    <input type="date" id="endDate" name="endDate">
+    </div>
+    <br>
+    <button id="getBooksBtn">Get Record</button>
+    <br>
+    <div id="result">
+      <table id="table" class="hidden">
+        <tr>
+            <th>Unique Id</th>
+            <th>Name</th>
+            <th>Author</th>
+            <th>Issue Date</th>
+            <th>Return Date</th>
+        </tr>
+    </table>
+    </div>
+    <script>
+      document.getElementById("getBooksBtn").addEventListener("click", function() {
+        var startDate = document.getElementById("startDate").value;
+        var endDate = document.getElementById("endDate").value;
+        var resultDiv = document.getElementById("result");
+
+        fetch("http://localhost:3500/records")
+          .then(function(response) {
+            return response.json();
+          })
+          .then(function(data) {
+            var filteredData = data.filter(function(book) {
+              var issueDate = new Date(book["Issue Date"]);
+              return issueDate >= new Date(startDate) && issueDate <= new Date(endDate);
+            });
+
+            if (filteredData.length === 0) {
+              resultDiv.innerHTML = "No records found for the selected dates.";
+            } else {
+              var table = document.createElement("table");
+              var thead = document.createElement("thead");
+              var tbody = document.createElement("tbody");
+
+              // Create table headers
+              var headers = Object.keys(filteredData[0]);
+              var headerRow = document.createElement("tr");
+              headers.forEach(function(header) {
+                var th = document.createElement("th");
+                th.textContent = header;
+                headerRow.appendChild(th);
+              });
+              thead.appendChild(headerRow);
+              table.appendChild(thead);
+
+              // Create table rows
+              filteredData.forEach(function(book) {
+                var row = document.createElement("tr");
+                headers.forEach(function(header) {
+                  var cell = document.createElement("td");
+                  cell.textContent = book[header];
+                  row.appendChild(cell);
+                });
+                tbody.appendChild(row);
+              });
+              table.appendChild(tbody);
+
+              resultDiv.innerHTML = "";
+              resultDiv.appendChild(table);
+            }
+          })
+          .catch(function(error) {
+            console.log("Error fetching data:", error);
+          });
+      });
+    </script>
+  </body>
+</html>

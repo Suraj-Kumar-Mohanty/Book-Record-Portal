@@ -1,0 +1,46 @@
+{
+    "records": [
+      {
+        "Unique Id": 350618,
+        "Name": "Harry Potter",
+        "Author": "J.K. Rowling",
+        "Issue Date": "2023-06-15",
+        "Return Date": "2023-07-10"
+      },
+      {
+        "Unique Id": 350619,
+        "Name": "To Kill a Mockingbird",
+        "Author": "Harper Lee",
+        "Issue Date": "2023-06-20",
+        "Return Date": "2023-07-15"
+      },
+      {
+        "Unique Id": 350620,
+        "Name": "The Great Gatsby",
+        "Author": "F. Scott",
+        "Issue Date": "2023-07-01",
+        "Return Date": "2023-07-20"
+      },
+      {
+        "Unique Id": 350621,
+        "Name": "Pride and Prejudice",
+        "Author": "Jane Austen",
+        "Issue Date": "2023-06-25",
+        "Return Date": "2023-07-05"
+      },
+      {
+        "Unique Id": 350622,
+        "Name": "1984",
+        "Author": "George Orwell",
+        "Issue Date": "2023-06-10",
+        "Return Date": "2023-07-08"
+      }
+    ],
+    "credentials" :[
+        {
+            "username" : "user@1",
+            "password" : "test@123"
+        }
+
+    ]
+  }

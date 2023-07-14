@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+  <html lang="en">
+    <title>Login Page</title>
+    <link rel="stylesheet" type="text/css" href = "design.css">
+  </head>
+  <body>
+    <div id = "heading">
+    <h1>Login Page</h1>
+    </div>
+    <br>
+    <div id = "creds">
+    <p>Username <input type="text" id="username" title="Username" placeholder="Username"></p>
+    <p>Password <input type="password" id="password" title="Password" placeholder="Password"></p>
+    </div>
+    <button id="postCreds" type="button">Sign In</button>
+    <script>
+      document.getElementById('postCreds').addEventListener('click', loginUser);
+
+      function loginUser() {
+        const username = document.getElementById('username').value;
+        const password = document.getElementById('password').value;
+
+        const data = {
+          username: username,
+          password: password
+        };
+        fetch('/login', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(data)
+        })
+          .then(response => response.json())
+          .then(responseData => {
+            if (responseData.authorized) {
+              window.location.href = './login';
+            } else {
+              alert('Invalid credentials');
+            }
+          })
+          .catch(error => {
+            console.error('Error:', error);
+          });
+      }
+    </script>
+  </body>
+</html>
